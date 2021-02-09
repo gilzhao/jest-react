@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+
+function Child() {
+  return (<div>child</div>)
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container" title="gil" data-test="container">
+      hello world
+      { Child() }
     </div>
   );
 }

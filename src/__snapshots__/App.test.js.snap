@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`4、集成测试 mount 1`] = `
+<App>
+  <div
+    className="app-container"
+    data-test="container"
+    title="gil"
+  >
+    hello world
+    <div>
+      child
+    </div>
+  </div>
+</App>
+`;
