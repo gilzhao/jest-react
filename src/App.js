@@ -1,13 +1,9 @@
-
-function Child() {
-  return (<div>child</div>)
-}
+import TodoList from './containers/TodoList'
 
 function App() {
   return (
-    <div className="app-container" title="gil" data-test="container">
-      hello world
-      { Child() }
+    <div>
+      <TodoList />
     </div>
   );
 }
