@@ -128,22 +128,26 @@ describe('TodoList 组件', () => {
     });
 
     it('valueChange 方法被调用时，undoList 数据项 value 被修改', () => {
-      const wrapper = shallow(<TodoList />);
-      const data = [
-          {
-              status: 'input',
-              value: 'learn jest',
-          }
-      ];
-      const value = 'learn react'
-      wrapper.setState({
-          undoList: data,
-      });
+        const wrapper = shallow(<TodoList />);
+        const data = [
+            {
+                status: 'input',
+                value: 'learn jest',
+            },
+            {
+                status: 'div',
+                value: 'learn TDD',
+            },
+        ];
+        const value = 'learn react';
+        wrapper.setState({
+            undoList: data,
+        });
 
-      wrapper.instance().valueChange(0, value);
-      expect(wrapper.state('undoList')[0]).toEqual({
-          ...data[0],
-          value
-      });
-  });
+        wrapper.instance().valueChange(0, value);
+        expect(wrapper.state('undoList')[0]).toEqual({
+            ...data[0],
+            value,
+        });
+    });
 });

@@ -67,7 +67,9 @@ describe('UndoList 组件', () => {
         const index = 1; // listData 数组下标，也可以生成随机数进行测试
         const wrapper = shallow(<UndoList deleteItem={fn} list={listData} />);
         const deleteItems = findTestWrapper(wrapper, 'delete-item');
-        deleteItems.at(index).simulate('click');
+        deleteItems.at(index).simulate('click', {
+          stopPropagation: () => {}
+        });
         expect(fn).toHaveBeenLastCalledWith(index);
     });
 
