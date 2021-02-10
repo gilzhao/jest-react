@@ -78,3 +78,13 @@ body {
   text-indent: 0;
   border-radius: 50%;
 }
+
+.undo-list-item-input {
+  position: relative;
+  top: 1px;
+  width: 300px;
+  height: 22px;
+  font-size:  14px;
+  text-indent: 10px;
+  outline: none;
+}
