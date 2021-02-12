@@ -1,11 +1,11 @@
 // 使用 Enzyme
 import React from 'react';
+import axios from 'axios';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import TodoList from '../../index';
 import { findTestWrapper } from '../../../../utils/testUtils';
 import store from '../../../../store/createStore';
-import axios from '../../__mocks__/axios';
 
 beforeEach(() => {
     axios.success = true;
