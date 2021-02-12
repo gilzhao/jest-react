@@ -1,31 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { actions } from '../store'
 
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
-        this.state = {
-            value: '',
-        };
-    }
-
-    handleInputChange(e) {
-        this.setState({
-            value: e.target.value,
-        });
     }
 
     handleInputKeyUp(e) {
-        const { value } = this.state;
+        const { value } = this.props;
         if (e.keyCode === 13 && value) {
             this.props.addUndoItem(value);
-            this.setState({ value: '' });
+            this.props.handleInputChange('')
         }
     }
 
     render() {
-        const { value } = this.state;
+        const { value, handleInputChange } = this.props;
         return (
             <div className="header">
                 <div className="header-content">
@@ -35,7 +27,7 @@ class Header extends Component {
                         className="header-input"
                         data-test="header-input"
                         value={value}
-                        onChange={this.handleInputChange}
+                        onChange={e => handleInputChange(e.target.value)}
                         onKeyUp={this.handleInputKeyUp}
                     />
                 </div>
@@ -44,4 +36,16 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapState = (state) => {
+    return {
+        value: state.todo.inputValue
+    }
+}
+
+const mapDispatch = dispatch => ({
+    handleInputChange(value) {
+        dispatch(actions.changeInputValue(value))
+    }
+})
+
+export default connect(mapState, mapDispatch)(Header);
