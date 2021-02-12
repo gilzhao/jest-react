@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import UndoList from './components/UndoList';
 import './style.css';
@@ -10,10 +11,22 @@ class TodoList extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.changeStatus = this.changeStatus.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
-        this.valueChange = this.valueChange.bind(this)
+        this.valueChange = this.valueChange.bind(this);
         this.state = {
             undoList: [],
         };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            axios.get('/undoList.json').then((res) => {
+                this.setState({
+                    undoList: res.data
+                })
+            }).catch(e => {
+                console.log(e);
+            })
+        }, 5000)
     }
 
     addUndoItem(value) {
@@ -52,18 +65,18 @@ class TodoList extends Component {
     }
 
     valueChange(index, value) {
-      const newList = this.state.undoList.map((item, listIndex) => {
-        if (index === listIndex) {
-            return {
-                ...item,
-                value,
-            };
-        }
-        return item
-    });
-    this.setState({
-        undoList: newList,
-    });
+        const newList = this.state.undoList.map((item, listIndex) => {
+            if (index === listIndex) {
+                return {
+                    ...item,
+                    value,
+                };
+            }
+            return item;
+        });
+        this.setState({
+            undoList: newList,
+        });
     }
 
     changeStatus(index) {
