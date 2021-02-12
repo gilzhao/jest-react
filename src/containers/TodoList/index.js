@@ -18,15 +18,16 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            axios.get('/undoList.json').then((res) => {
+        axios
+            .get('/undoList.json')
+            .then((res) => {
                 this.setState({
-                    undoList: res.data
-                })
-            }).catch(e => {
-                console.log(e);
+                    undoList: res.data,
+                });
             })
-        }, 5000)
+            .catch((e) => {
+                console.log(e);
+            });
     }
 
     addUndoItem(value) {
